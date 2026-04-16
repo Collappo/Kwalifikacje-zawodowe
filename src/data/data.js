@@ -7,10 +7,50 @@ const data = [
                 id: 0,
                 title: "Ile psów?",
                 answers: {
-                    0: "1"
-                }
+                    0: "1",
+                    1: "3",
+                    2: "2",
+                    3: "5",
+                },
+                goodAnswer: 0
             }
-        ]
+        ],
+        available: true
+    },
+    {
+        name: "INF.04",
+        fullName: "Projektowanie, programowanie i testowanie aplikacji",
+        questions: [
+            {
+                id: 0,
+                title: "Ile psów?",
+                answers: {
+                    0: "1",
+                    1: "3",
+                    2: "2",
+                    3: "5",
+                },
+                goodAnswer: 0
+            }
+        ],
+        available: false
+    }, {
+        name: "INF.05",
+        fullName: "Montaż i eksploatacja instalacji wewnątrzbudynkowych telewizji satelitarnej, kablowej i naziemnej",
+        questions: [
+            {
+                id: 0,
+                title: "Ile psów?",
+                answers: {
+                    0: "1",
+                    1: "3",
+                    2: "2",
+                    3: "5",
+                },
+                goodAnswer: 0
+            }
+        ],
+        available: false
     }
 ]
 
