@@ -29,10 +29,13 @@ function Card({ name, fullName, available, handleClick }) {
                 <p className='text-mauve-100/90 text-2xl font-bold tracking-tight name'>{name}</p>
             </div>
             <p className='w-full text-center font-semibold text-wrap text-lg text-white/90 full-name'>{fullName}</p>
-            <button className={`w-full mt-auto text-center bg-white/80 rounded-2xl p-4 font-bold cursor-pointer text-indigo-950 group
-            hover:bg-black/50 hover:text-white/80
-            ease-in-out duration-250`}
-                onClick={handleClick}
+            <button className={`w-full mt-auto text-center rounded-2xl p-4 font-bold text-indigo-950
+            ${available ? 'hover:bg-black/50 hover:text-white/80 ease-in-out duration-250 bg-white/80 cursor-pointer' : 'bg-white/50'}
+            
+            `}
+                onClick={available ? handleClick : undefined}
+                disabled={!available}
+
             >
                 Wybierz
             </button>

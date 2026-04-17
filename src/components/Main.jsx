@@ -25,7 +25,7 @@ function Main() {
                         'flex flex-col flex-wrap md:flex-row gap-6 px-6'
                     >
                         {data.map(e => (
-                            <Card name={e.name} fullName={e.fullName} handleClick={() => { choiceQualification(e.questions) }} />
+                            <Card name={e.name} fullName={e.fullName} available={e.available} handleClick={() => { choiceQualification(e.questions) }} />
                         ))}
                     </div>
                 </>
