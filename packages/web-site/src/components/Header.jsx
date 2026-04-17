@@ -1,11 +1,12 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { SplitText } from 'gsap/all'
-import { GraduationCap } from 'lucide-react'
+import { BookMarked, GraduationCap } from 'lucide-react'
 import React, { useRef } from 'react'
 
 function Header() {
     const titleRef = useRef(null)
+    const linkRef = useRef(null)
 
     useGSAP(() => {
         const splitTitle = new SplitText(titleRef.current, { type: "chars,words,lines", linesClass: "clip-text" })
@@ -22,6 +23,15 @@ function Header() {
                 each: 0.02,
             }
         }, 0.2);
+
+        gsap.from(linkRef.current, {
+            autoAlpha: 0,
+            opacity: 1,
+            y: 50,
+            ease: "power3.out",
+            duration: 1,
+        }
+        )
     }, [])
 
     return (
@@ -30,6 +40,10 @@ function Header() {
                 <GraduationCap size={40} />
                 <h2 ref={titleRef} className='font-bold text-2xl tracking-wide py-0'>Kwalifikacje Zawodowe</h2>
             </div>
+            <a ref={linkRef} href="https://github.com/Collappo/Kwalifikacje-zawodowe" className='flex justify-center items-center gap-3 rounded-2xl bg-white/80 py-2 px-4 hover:bg-white/10 ease-in-out duration-250 transform-gpu group'>
+                < BookMarked className='text-black group-hover:text-white/80' size={20} />
+                <span className='font-mono font-bold text-black text-md group-hover:text-white/80'>GitHub</span>
+            </a>
         </header>
     )
 }
