@@ -34,23 +34,6 @@ const data = [
             }
         ],
         available: false
-    }, {
-        name: "INF.67",
-        fullName: "Lorem impum dolium anabele",
-        questions: [
-            {
-                id: 0,
-                title: "Ile psów?",
-                answers: {
-                    0: "1",
-                    1: "3",
-                    2: "2",
-                    3: "5",
-                },
-                goodAnswer: 0
-            }
-        ],
-        available: false
     }
 ]
 
