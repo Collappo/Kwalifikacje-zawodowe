@@ -31,6 +31,10 @@ body {
   text-shadow: #00000080 0 0 10px;
 }
 
+.clip-text {
+  overflow: hidden;
+}
+
 /* #root {
   width: 1126px;
   max-width: 100%;

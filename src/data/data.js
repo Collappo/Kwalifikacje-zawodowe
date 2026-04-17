@@ -35,8 +35,8 @@ const data = [
         ],
         available: false
     }, {
-        name: "INF.05",
-        fullName: "Montaż i eksploatacja instalacji wewnątrzbudynkowych telewizji satelitarnej, kablowej i naziemnej",
+        name: "INF.67",
+        fullName: "Lorem impum dolium anabele",
         questions: [
             {
                 id: 0,
