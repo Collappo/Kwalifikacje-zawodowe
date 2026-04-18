@@ -4,9 +4,11 @@ import Card from './Card'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { SplitText } from 'gsap/all'
+import Question from './Question'
 
 function Main() {
     const [questions, setQuestions] = useState([])
+    const [points, setPoints] = useState(0)
     const textRef = useRef()
 
     useGSAP(() => {
@@ -56,6 +58,14 @@ function Main() {
         return questions.filter(e => (questionsId.has(e.id)))
     }
 
+    function checkAnswer(answer, goodAnswer) {
+        if (answer === goodAnswer) {
+            setPoints(prev => prev + 1)
+            return true;
+        }
+        return false
+    }
+
     return (
         <div className='mx-auto max-w-7xl md:w-full flex flex-col justify-start p-8 mt-24 gap-12 scroll-auto'>
             {(questions.length === 0) ?
@@ -75,9 +85,7 @@ function Main() {
                     <h3 className='text-3xl font-semibold tracking-tight text-balance text-white py-0'>Odpowiedz na 40 pytań:</h3>
                     <div className='flex flex-col justify-start items-center'>
                         {shuffle40Questions(questions).map((e, i) => (
-                            <div>
-                                <p>{i + 1}. {e.title}</p>
-                            </div>
+                            <Question title={e.title} answers={e.answers} goodAnswer={e.goodAnswer} checkAnswer={checkAnswer} />
                         ))}
                     </div>
                 </>
