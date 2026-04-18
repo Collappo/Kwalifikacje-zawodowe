@@ -39,16 +39,25 @@ function Main() {
     })
 
     function choiceQualification(questions) {
-        setTimeout(
-            () => {
-                setQuestions(questions)
-            },
-            1000
-        )
+        setQuestions(questions)
+        console.log(questions)
+    }
+
+    function shuffle40Questions(questions) {
+        const numberOfQuestions = 40
+        let questionsId = new Set()
+        while (questionsId.size < numberOfQuestions) {
+            const number = Math.floor(Math.random() * questions.length)
+            if (questionsId.has(number)) { continue }
+            questionsId.add(number)
+        }
+        questionsId = new Set(questionsId)
+        console.log(questionsId)
+        return questions.filter(e => (questionsId.has(e.id)))
     }
 
     return (
-        <div className='mx-auto max-w-7xl md:w-full flex flex-col justify-start p-8 mt-24 md:mt-0 gap-12 scroll-auto'>
+        <div className='mx-auto max-w-7xl md:w-full flex flex-col justify-start p-8 mt-24 gap-12 scroll-auto'>
             {(questions.length === 0) ?
                 <>
                     <h3 ref={textRef} className='text-3xl font-semibold tracking-tight text-balance text-white py-0'>Wybierz kwalifikacje</h3>
@@ -63,7 +72,14 @@ function Main() {
 
                 :
                 <>
-                    <h3 className='text-3xl font-semibold tracking-tight text-balance text-white py-0'>Odpowiedz na pytania</h3>
+                    <h3 className='text-3xl font-semibold tracking-tight text-balance text-white py-0'>Odpowiedz na 40 pytań:</h3>
+                    <div className='flex flex-col justify-start items-center'>
+                        {shuffle40Questions(questions).map((e, i) => (
+                            <div>
+                                <p>{i + 1}. {e.title}</p>
+                            </div>
+                        ))}
+                    </div>
                 </>
             }
 
