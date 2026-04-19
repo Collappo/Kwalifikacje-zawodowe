@@ -10,22 +10,21 @@ function Question({ title, answers, goodAnswer, checkAnswer }) {
         >
             {/* Questioin Title */}
             <div
-                className='w-full rounded-t-3xl flex gap-6 items-center justify-center'
+                className='w-full rounded-t-3xl flex gap-6 items-center justify-between'
             >
-                <div className='flex justify-center items-center self-start rounded-2xl p-2 bg-black/30'>
+                <div className='flex justify-center items-center left-0 self-start rounded-2xl p-2 bg-black/30'>
                     <Sparkle size={30} className='text-white' />
                 </div>
-                <h3 className='text-white text-xl font-semibold font-mono'>{title}</h3>
+                <h3 className='text-white text-xl font-semibold font-mono w-9/10'>{title}</h3>
             </div>
 
             {/* Answers */}
             <div
                 className='w-full flex flex-col md:grid grid-cols-2 grid-rows-2 gap-6'
             >
-                <Answer text={answers[0]} checkAnswer={() => checkAnswer(0, goodAnswer)} />
-                <Answer text={answers[1]} checkAnswer={() => checkAnswer(1, goodAnswer)} />
-                <Answer text={answers[2]} checkAnswer={() => checkAnswer(2, goodAnswer)} />
-                <Answer text={answers[3]} checkAnswer={() => checkAnswer(3, goodAnswer)} />
+                {answers.map((e, i) => {
+                    return <Answer text={e.text} checkAnswer={() => checkAnswer(i, goodAnswer)} />
+                })}
             </div>
         </div>
     )
