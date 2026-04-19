@@ -26,6 +26,15 @@
 body {
   margin: 0;
   overflow-x: hidden;
+  cursor: url("/cursor.png"), auto;
+}
+
+.pointer {
+  cursor: url("/cursor-pointer.png"), default;
+}
+
+.disabled {
+  cursor: url("/cursor-disabled.png"), default;
 }
 
 .text-shadow {
