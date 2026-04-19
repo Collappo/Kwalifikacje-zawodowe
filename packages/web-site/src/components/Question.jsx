@@ -6,7 +6,7 @@ import { Sparkle } from 'lucide-react'
 function Question({ title, answers, goodAnswer, checkAnswer }) {
     return (
         <div
-            className='p-6 flex flex-col justify-center items-center max-w-7xl w-8/10 mb-24 bg-white/10 rounded-3xl ring ring-white/20 gap-6'
+            className='p-6 flex flex-col justify-center items-center w-xs md:w-xl xl:w-2xl mb-24 bg-white/10 rounded-3xl ring ring-white/20 gap-6'
         >
             {/* Questioin Title */}
             <div
@@ -20,7 +20,7 @@ function Question({ title, answers, goodAnswer, checkAnswer }) {
 
             {/* Answers */}
             <div
-                className='w-full grid grid-cols-2 grid-rows-2 gap-6'
+                className='w-full flex flex-col md:grid grid-cols-2 grid-rows-2 gap-6'
             >
                 <Answer text={answers[0]} checkAnswer={() => checkAnswer(0, goodAnswer)} />
                 <Answer text={answers[1]} checkAnswer={() => checkAnswer(1, goodAnswer)} />
