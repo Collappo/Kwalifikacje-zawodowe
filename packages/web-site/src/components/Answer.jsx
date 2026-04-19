@@ -2,9 +2,10 @@ import React from 'react'
 
 function Answer({ text, checkAnswer, afterClicked }) {
     return (
-        <button className={`p-3 w-full ring-1 ring-white/5 rounded-2xl text-black outline-none pointer font-semibold text-lg text-wrap
-        bg-white/80 hover:bg-black/50 hover:text-white/80 ease-in-out duration-250
-        `}>
+        <button className={`p-3 w-full rounded-2xl font-semibold text-lg text-wrap font-mono text-black outline-none ${afterClicked} 
+        `}
+            onClick={checkAnswer}
+        >
             {text}
         </button>
     )

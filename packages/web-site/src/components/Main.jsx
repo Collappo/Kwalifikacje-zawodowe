@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import data from '../data/data'
 import Card from './Card'
 import gsap from 'gsap'
@@ -8,6 +8,8 @@ import Question from './Question'
 
 function Main() {
     const [questions, setQuestions] = useState([])
+    const [shuffledQuestions, setShuffledQuestions] = useState([])
+    const [answers, setAnswers] = useState([])
     const [points, setPoints] = useState(0)
     const textRef = useRef()
 
@@ -40,31 +42,53 @@ function Main() {
         }
     })
 
+
     function choiceQualification(questions) {
         setQuestions(questions)
-        console.log(questions)
     }
+
+    // function shuffle40Questions(questions) {
+    //     const numberOfQuestions = 40
+    //     let questionsId = new Set()
+    //     let answers_ = []
+    //     while (questionsId.size < numberOfQuestions) {
+    //         const number = Math.floor(Math.random() * questions.length)
+    //         if (questionsId.has(number)) { continue }
+    //         questionsId.add(number)
+    //         answers_.push({ id: number, userAnswer: null })
+    //     }
+    //     questionsId = new Set(questionsId)
+    //     // setAnswers(answers_)
+    //     return questions.filter(e => (questionsId.has(e.id)))
+    // }
 
     function shuffle40Questions(questions) {
-        const numberOfQuestions = 40
-        let questionsId = new Set()
-        while (questionsId.size < numberOfQuestions) {
-            const number = Math.floor(Math.random() * questions.length)
-            if (questionsId.has(number)) { continue }
-            questionsId.add(number)
-        }
-        questionsId = new Set(questionsId)
-        console.log(questionsId)
-        return questions.filter(e => (questionsId.has(e.id)))
+        const shuffled = [...questions].sort(() => Math.random() - 0.5)
+        return shuffled.slice(0, 40)
     }
 
-    function checkAnswer(answer, goodAnswer) {
+    function checkAnswer(id, answer, goodAnswer, savedAnswer) {
+        if (savedAnswer.userAnswer != null) return;
+        setAnswers(prev => (prev.map(e => (e.id === id ? { ...e, userAnswer: answer } : e))))
         if (answer === goodAnswer) {
             setPoints(prev => prev + 1)
             return true;
         }
         return false
     }
+
+    useEffect(() => {
+        const shuffled = shuffle40Questions(questions)
+        setAnswers(shuffled.map(e => (
+            {
+                id: e.id,
+                userAnswer: null
+            }
+        )))
+        setShuffledQuestions(shuffled)
+    }, [questions])
+
+    useEffect(() => console.log(answers), [answers])
 
     return (
         <div className='mx-auto max-w-7xl md:w-full flex flex-col justify-start p-8 mt-24 gap-12 scroll-auto'>
@@ -84,9 +108,10 @@ function Main() {
                 <>
                     <h3 className='text-3xl font-semibold tracking-tight text-balance text-white py-0'>Odpowiedz na 40 pytań:</h3>
                     <div className='flex flex-col justify-start items-center'>
-                        {shuffle40Questions(questions).map((e, i) => (
-                            <Question title={e.title} answers={e.answers} goodAnswer={e.goodAnswer} checkAnswer={checkAnswer} />
-                        ))}
+                        {shuffledQuestions.map((e, i) => {
+                            let savedAnswer = answers.filter(a => a.id === e.id)[0]
+                            return <Question key={e.id} questionId={e.id} title={e.title} answers={e.answers} goodAnswer={e.goodAnswer} checkAnswer={checkAnswer} savedAnswer={savedAnswer} />
+                        })}
                     </div>
                 </>
             }
