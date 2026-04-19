@@ -26,14 +26,14 @@ function Question({ questionId, title, answers, goodAnswer, checkAnswer, savedAn
                     let afterClicked = `ring-1 ring-white/5 pointer bg-white/80 hover:bg-black/50 hover:text-white/80 ease-in-out duration-250`
                     if (savedAnswer.userAnswer != null) {
                         if (i === goodAnswer) {
-                            afterClicked = `bg-emerald-400 ring ring-emerald-400 disabled`
+                            afterClicked = `bg-emerald-400 ring ring-emerald-400 disabled ease-in-out duration-250`
                         }
                         else if (i != goodAnswer && i == savedAnswer.userAnswer) {
-                            afterClicked = `bg-red-400 ring ring-red-500/50 disabled`
+                            afterClicked = `bg-red-400 ring ring-red-500/50 disabled ease-in-out duration-250`
                         }
 
                         else {
-                            afterClicked = `ring-1 ring-white/5 disabled bg-white/30`
+                            afterClicked = `ring-1 ring-white/5 disabled bg-white/30 ease-in-out duration-250`
                         }
                     }
                     return <Answer key={i} text={e.text} checkAnswer={() => checkAnswer(questionId, i, goodAnswer, savedAnswer)} afterClicked={afterClicked} />
