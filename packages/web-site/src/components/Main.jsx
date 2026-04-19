@@ -88,10 +88,8 @@ function Main() {
         setShuffledQuestions(shuffled)
     }, [questions])
 
-    useEffect(() => console.log(answers), [answers])
-
     return (
-        <div className='mx-auto max-w-7xl md:w-full flex flex-col justify-start p-8 mt-24 gap-12 scroll-auto'>
+        <div className='mx-auto max-w-7xl md:w-full flex flex-col justify-start p-8 mt-32 md:mt-24 gap-12 scroll-auto'>
             {(questions.length === 0) ?
                 <>
                     <h3 ref={textRef} className='text-3xl font-semibold tracking-tight text-balance text-white py-0'>Wybierz kwalifikacje</h3>
@@ -110,7 +108,7 @@ function Main() {
                     <div className='flex flex-col justify-start items-center'>
                         {shuffledQuestions.map((e, i) => {
                             let savedAnswer = answers.filter(a => a.id === e.id)[0]
-                            return <Question key={e.id} questionId={e.id} title={e.title} answers={e.answers} goodAnswer={e.goodAnswer} checkAnswer={checkAnswer} savedAnswer={savedAnswer} />
+                            return <Question key={e.id} questionId={e.id} number={i + 1} title={e.title} answers={e.answers} goodAnswer={e.goodAnswer} checkAnswer={checkAnswer} savedAnswer={savedAnswer} />
                         })}
                     </div>
                 </>

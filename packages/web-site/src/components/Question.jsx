@@ -3,7 +3,7 @@ import Answer from './Answer'
 import { Sparkle } from 'lucide-react'
 
 
-function Question({ questionId, title, answers, goodAnswer, checkAnswer, savedAnswer }) {
+function Question({ questionId, number, title, answers, goodAnswer, checkAnswer, savedAnswer }) {
     return (
         <div
             className='p-6 flex flex-col justify-center items-center w-xs md:w-xl xl:w-2xl mb-24 bg-white/10 rounded-3xl ring ring-white/20 gap-6'
@@ -15,7 +15,7 @@ function Question({ questionId, title, answers, goodAnswer, checkAnswer, savedAn
                 <div className='flex justify-center items-center left-0 self-start rounded-2xl p-2 bg-black/30'>
                     <Sparkle size={30} className='text-white' />
                 </div>
-                <h3 className='text-white text-xl font-semibold font-mono w-9/10'>{title}</h3>
+                <h3 className='text-white text-xl font-semibold w-9/10'>{number}. {title}</h3>
             </div>
 
             {/* Answers */}

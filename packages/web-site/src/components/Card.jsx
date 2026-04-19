@@ -36,7 +36,7 @@ function Card({ name, fullName, available, handleClick }) {
     }, [])
 
     return (
-        <div ref={cardRef} className={`flex ring-1 ring-white/30 w-64 flex-col items-stretch bg-white/10 rounded-3xl p-6 gap-6 transform-gpu`}>
+        <div ref={cardRef} className={`flex ring-1 ring-white/30 w-xs md:w-64 flex-col items-stretch bg-white/10 rounded-3xl p-6 gap-6 transform-gpu`}>
             <div className="flex gap-6 items-center w-full">
                 <div className='flex justify-center items-center rounded-2xl p-2 bg-black/30'>
                     <GraduationCap size={30} className='text-white' />
