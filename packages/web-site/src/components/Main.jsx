@@ -5,6 +5,7 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { SplitText } from 'gsap/all'
 import Question from './Question'
+import ScoreStatus from './ScoreStatus'
 
 function Main() {
     const [questions, setQuestions] = useState([])
@@ -47,21 +48,6 @@ function Main() {
         setQuestions(questions)
     }
 
-    // function shuffle40Questions(questions) {
-    //     const numberOfQuestions = 40
-    //     let questionsId = new Set()
-    //     let answers_ = []
-    //     while (questionsId.size < numberOfQuestions) {
-    //         const number = Math.floor(Math.random() * questions.length)
-    //         if (questionsId.has(number)) { continue }
-    //         questionsId.add(number)
-    //         answers_.push({ id: number, userAnswer: null })
-    //     }
-    //     questionsId = new Set(questionsId)
-    //     // setAnswers(answers_)
-    //     return questions.filter(e => (questionsId.has(e.id)))
-    // }
-
     function shuffle40Questions(questions) {
         const shuffled = [...questions].sort(() => Math.random() - 0.5)
         return shuffled.slice(0, 40)
@@ -89,7 +75,7 @@ function Main() {
     }, [questions])
 
     return (
-        <div className='mx-auto max-w-7xl md:w-full flex flex-col justify-start p-8 mt-32 md:mt-24 gap-12 scroll-auto'>
+        <div className='mx-auto max-w-7xl md:w-full flex flex-col justify-start items-center p-8 mt-32 md:mt-24 gap-12 scroll-auto'>
             {(questions.length === 0) ?
                 <>
                     <h3 ref={textRef} className='text-3xl font-semibold tracking-tight text-balance text-white py-0'>Wybierz kwalifikacje</h3>
@@ -111,6 +97,7 @@ function Main() {
                             return <Question key={e.id} questionId={e.id} number={i + 1} title={e.title} answers={e.answers} goodAnswer={e.goodAnswer} checkAnswer={checkAnswer} savedAnswer={savedAnswer} />
                         })}
                     </div>
+                    <ScoreStatus doneQuestions={(answers.filter(e => e.userAnswer != null)).length.toString()} questionsAmount={shuffledQuestions.length.toString()} points={points} />
                 </>
             }
 
